@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD39en6f7uPcbvtzmfgXoIc_oD67NiPNkw",
+            authDomain: "dalikamata-project.firebaseapp.com",
+            databaseURL: "https://dalikamata-project-default-rtdb.firebaseio.com",
+            projectId: "dalikamata-project",
+            storageBucket: "dalikamata-project.appspot.com",
+            messagingSenderId: "630751021846",
+            appId: "1:630751021846:web:a4fcfe26620894722c1e37",
+            measurementId: "G-H8FCV3B5V8"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var storageRef = firebase.storage().ref();
+    </script>
+</head>
+
+<body>
+    <div id="photos">
+        Loading...
+   </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
