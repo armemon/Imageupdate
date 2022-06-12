@@ -7,14 +7,13 @@ const getFromFirebase = () => {
                 imageRef.getMetadata()
                     .then((metadata) => {
                         var date = new Date(metadata.updated); // some mock date
-                        var milli = date.getTime();
-
-                        dict[url] = milli
+                        // var milli = date.getTime();
+                        dict[url] = date
                     })
 
 
                     .catch((error) => {
-                        // Uh-oh, an error occurred!
+                        console.log(error);
                     });
             });
         });
@@ -34,12 +33,15 @@ const render = () => {
             const img = document.createElement("img");
             const imgwraps = document.createElement("div");
             const closes = document.createElement("button");
+            const timespan = document.createElement("p");
             closes.innerHTML = 'x'
+            timespan.innerHTML= dict[key].toString().slice(0,25)
             img.setAttribute("src", key);
             imgwraps.setAttribute("class", "img-wraps");
             closes.setAttribute("class", "closes");
             closes.setAttribute("onclick", "deleted(this)");
             imgwraps.appendChild(img)
+            imgwraps.appendChild(timespan)
             imgwraps.appendChild(closes)
             photos.appendChild(imgwraps)
         })
@@ -49,7 +51,6 @@ const render = () => {
 setInterval(render, 1000)
 setInterval(getFromFirebase, 20000)
 function deleted(e) {
-    console.log(dict)
     url = e.parentNode.childNodes[0].src
     let pictureRef = firebase.storage().refFromURL(url);
     pictureRef.delete()
@@ -59,6 +60,4 @@ function deleted(e) {
     setTimeout(clearInterval(deletingInterval),21000)
     urls = urls.filter(item => item !== url)
     e.parentNode.remove()
-    console.log(dict)
-    console.log(urls)
 }
